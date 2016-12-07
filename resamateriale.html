@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1,
+width=device-width, height=device-height, target-densitydpi=device-dpi" />
+<meta name="HandheldFriendly" content="True" />
+<link rel="stylesheet" type="text/css" href="css/calcoliresine.css" media="screen"  >
+
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="generator" content="PSPad editor, www.pspad.com">
+  <script type="text/javascript" src="js/resa.js"> </script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($){
+
+	
+	/* toggle nav */
+	$("#menu-icon").on("click", function(){
+		$("#header ul").slideToggle();
+		$(this).toggleClass("active");
+	});
+
+});
+</script>
+  <title>CALCOLO CONSUMO MATERIALE</title>
+  </head>
+  <body onload="startresa()">
+ <div id="content">
+ <div id="menu-icon">Menu</div>
+  
+
+
+   <div id="header">
+  <ul class="active">
+    <li><a href="miscelazione.html">Rapporti di miscelazione</a></li>
+    <li><a href="dimensionamentogiunti.html">Stima sviluppo giunti</a></li>
+            <li><a href="sigillature.html">calcolo materiale sigillature</a></li>
+            <li><a href="travetti.html">Calcolo materiale per travetti</a></li>
+            <li><a href="massetto.html">Calcolo materiale per massetto in resina</a></li>
+            <li><a href="resamateriale.html">Calcolo consumo materiale</a> </li>
+            <li><a href="sgusce.html">Calcolo materiale per sgusce parete/pavimento</a></li>
+  </ul>
+  </div>  
+ <div id="intro">
+ <h1>CALCOLO CONSUMO MATERIALE</h1>
+ <p class="intro">Conoscendo sia la superficie del pavimento che la resa del materiale dichiarata dal fornitore
+ viene calcolato il materiale da impiegare per la realizzazione del pavimento. I valori sono arrotondati al primo intero.</p>
+ <div class="introresa">
+ <ul>
+ <li><button type="button" class="button" onclick="openver()">Verniciatura pavimento</button></li>
+ <li><button type="button" class="button" onclick="openauto()">Autolivellante</button></li>
+ <li><button type="button" class="button" onclick="openmulti()" >Multistrato</button></li>
+ <li><button type="button" class="button" onclick="openmass()" >Massetto epossidico</button></li>
+ </ul>
+ </div>
+  </div>   <!-- fine intro-->
+
+ <div id="verniciatura">
+ <div class="richiestadati">
+ <p>Inserire la resa/mq dei materiali in <b>Kg</b><br />Se nella scheda viene riportata una resa di 150<b>g/mq</b> inserire <b>0.150</b> usando il punto al posto della virgola.<br />
+ Se non venisse usato un passaggio, inserire <b>0</b> e non lasciare vuoto il campo.</p>
+ <form id="verniciatura">
+ <ul>
+<li> <label for="areap">Inserire la superficie del pavimento in mq.</label>
+ <input type="number" name="areap" id="areap">  </li>
+<li> <label for="primerv">Primer</label><input type="number" name="primerv" id="primerv" />     </li>
+<li> <label for="primamanv">Prima mano verniciatura</label><input type="number" name="primamanv" id="primamanv" />     </li>
+<li> <label for="secondamanv">Seconda mano verniciatura</label><input type="number" name="secondamanv" id="secondamanv" />     </li>
+<li> <label for="inertiv">Eventuale quarzo o inerti minerali antisdrucciolo</label><input type="number" name="inertiv" id="inertiv" />     </li>
+ </ul>
+<input type="button" class="button" value="calcola" onclick="controllover()">
+<input type="reset" class="button" value="Cancella dati" onclick="verniciatura.reset()">
+</form>
+ </div>
+ </div>
+<div id="multistrato">
+ <div class="richiestadati"><ul>
+ <p>Inserire la resa/mq dei materiali in <b>Kg</b><br />Se nella scheda viene riportata una resa di 150<b>g/mq</b> inserire <b>0.150</b> usando il punto al posto della virgola.<br />
+ Se non venisse usato un passaggio, inserire <b>0</b> e non lasciare vuoto il campo.</p>
+ <form id="multilev">
+ <ul>
+<li> <label for="areamultis">Inserire la superficie del pavimento in mq.</label>
+ <input type="number" name="areamultis" id="areamultis">  </li>
+<li> <label for="primermult">Primer multistrato</label><input type="number" name="primermult" id="primermult" />     </li>
+<li> <label for="primamanmulti">Primo strato</label><input type="number" name="primamanmulti" id="primamanmulti" />     </li>
+<li> <label for="secondamanmulti">Secondo strato</label><input type="number" name="secondamanmulti" id="secondamanmulti" />     </li>
+<li> <label for="terzamanmulti">Terzo strato</label><input type="number" name="terzamanmulti" id="terzamanmulti" />     </li>
+<li> <label for="manfinmulti">Mano di finitura (poliuretanica o epossidica)</label><input type="number" name="manfinmulti" id="manfinmulti" />     </li>
+<li> <label for="inertimulti">Quarzo o inerti minerali antisdrucciolo</label><input type="number" name="inertimulti" id="inertimulti" />     </li>
+ </ul>
+<input type="button" class="button" value="calcola" onclick="controllomulti()">
+<input type="reset" class="button" value="Cancella dati" onclick="multilev.reset()">
+</form>
+</div>
+ </div>
+ <div id="autolivellante">
+ <div class="richiestadati"><ul>
+ <p>Inserire la resa/mq dei materiali in <b>Kg</b><br />Se nella scheda viene riportata una resa di 150<b>g/mq</b> inserire <b>0.150</b> usando il punto al posto della virgola.<br />
+ Se non venisse usato un passaggio, inserire <b>0</b> e non lasciare vuoto il campo.</p>
+ <form id="autoliv">
+ <ul>
+<li> <label for="areauto">Inserire la superficie del pavimento in mq.</label>
+ <input type="number" name="areauto" id="areauto">  </li>
+<li> <label for="primerauto">Primer</label><input type="number" name="primerauto" id="primerauto" />     </li>
+<li> <label for="manautoliv">Autolivellante</label><input type="number" name="manautoliv" id="manautoliv" />     </li>
+<li> <label for="manfinautoliv">Eventuale mano di finitura (poliuretanica o epossidica)</label><input type="number" name="manfinautoliv" id="manfinautoliv" />     </li>
+<li> <label for="inertiauto">Eventuale quarzo o inerti minerali antisdrucciolo</label><input type="number" name="inertiauto" id="inertiauto" />     </li>
+ </ul>
+<input type="button" class="button" value="calcola" onclick="controlloaut()">
+<input type="reset" class="button" value="Cancella dati" onclick="autoliv.reset()">
+</form>
+</div>
+</div>
+
+ </div>
+
+ <div id="massetto">
+ <div class="richiestadati"><ul>
+ <p>Inserire la resa/mq dei materiali in <b>Kg</b><br />Se nella scheda viene riportata una resa di 150<b>g/mq</b> inserire <b>0.150</b> usando il punto al posto della virgola.<br />
+ Se non venisse usato un passaggio, inserire <b>0</b> e non lasciare vuoto il campo.</p>
+ <form id="masset">
+ <ul>
+<li> <label for="areamass">Inserire la superficie del pavimento in mq.</label>
+ <input type="number" name="areamass" id="areamass">  </li>
+<li> <label for="primermass">Primer </label><input type="number" name="primermass" id="primermass" />     </li>
+<li> <label for="mass">Resina per malta</label><input type="number" name="mass" id="mass" />     </li>
+<li> <label for="rasamass">Resina per rasatura</label><input type="number" name="rasamass" id="rasamass" />     </li>
+<li> <label for="finmass">Resina per finitura</label><input type="number" name="finmass" id="finmass" />     </li>
+<li> <label for="inertimass">Quarzo per malta e rasature</label><input type="number" name="inertimass" id="inertimass" />     </li>
+ </ul>
+<input type="button" class="button" value="calcola" onclick="controllomass()">
+<input type="reset" class="button" value="Cancella dati" onclick="masset.reset()">
+</form>
+</div>
+ </div>
+ 
+<div id="risultati">
+    <div id="risultaver">
+        <div id="areaver" style="margin-top:50px;"></div>
+        <div id="resaprimerv"></div>
+        <div id="resaver"></div> 
+        <div id="resinerti"></div>
+
+    </div>
+    <div id="risultamulti">
+        <div id="areamultistrato" style="margin-top:50px;"></div>
+        <div id="primermultistrato"></div>
+        <div id="resinamultistrato"></div>
+        <div id="finituramultistrato"></div>
+        <div id="quarzomultistrato"></div>
+    </div>
+    <div id="risultaauto">
+        <div id="superauto" style="margin-top:50px;"></div>
+        <div id="primerautol"></div>
+        <div id="resaautoli"></div>
+        <div id="finituraautoliv"></div>
+        <div id="resainertautoliv"></div>
+    </div>
+    <div id="risultamass">
+    <div id="areamassetto" style="margin-top:50px;"></div>
+    <div id="primermassetto"></div>
+    <div id="resinamassetto"></div>
+    <div id="rasaturamassetto"></div>
+    <div id="finituramassetto"></div>
+    <div id="quarzomassetto"></div>
+    </div>
+</div><!-- fine risultati--> 
+ 
+ 
+
+ </div><!-- fine content-->
+  </body>
+</html>

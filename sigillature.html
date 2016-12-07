@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1,
+width=device-width, height=device-height, target-densitydpi=device-dpi" />
+<meta name="HandheldFriendly" content="True" />
+ <link href="css/calcoliresine.css" media="screen" rel="stylesheet" type="text/css" >
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="PSPad editor, www.pspad.com">
+  <script type="text/javascript" src="js/calcoli.js"> </script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($){
+
+	
+	/* toggle nav */
+	$("#menu-icon").on("click", function(){
+		$("#header ul").slideToggle();
+		$(this).toggleClass("active");
+	});
+
+});
+</script>
+  <title>Calcolo sigillante</title>
+  </head>
+    <body onLoad="imgcanvas ()">
+    
+  <div id="content">
+   <div id="menu-icon">Menu</div>
+  
+
+
+   <div id="header">
+  <ul class="active">
+    <li><a href="miscelazione.html">Rapporti di miscelazione</a></li>
+    <li><a href="dimensionamentogiunti.html">Stima sviluppo giunti</a></li>
+            <li><a href="sigillature.html">calcolo materiale sigillature</a></li>
+            <li><a href="travetti.html">Calcolo materiale per travetti</a></li>
+            <li><a href="massetto.html">Calcolo materiale per massetto in resina</a></li>
+            <li><a href="resamateriale.html">Calcolo consumo materiale</a> </li>
+            <li><a href="sgusce.html">Calcolo materiale per sgusce parete/pavimento</a></li>
+  </ul>
+  </div>  
+  <h1> CALCOLO SIGILLANTE</h1>
+<p> stima del materiale necessario per sigillare i giunti di contrazione<br />
+<b>Attenzione, si tratta di una stima. Il consumo reale potr&agrave; differire sia in eccesso che in difetto</b></p> e salvo sfridi del materiale<br />
+
+<canvas id="giunto"  style="background-color:#fff; margin:0 auto; border:solid 1px #444;" > </canvas>
+
+<br />
+
+<div id="richiestadati">
+<ul>
+<li><label class="richiestadati"> inserire la quantità in <b>metri lineari</b>. dei giunti da sigillare</label><input type="number" class="input" id="metri" name="metri" /></li> 
+<li><label  class="richiestadati">inserire la larghezza <b>A</b> del giunto in <b>mm</b> </label><input type="number" class="input" id="largh" name="largh"  /></li>
+<li><label  class="richiestadati"> inserire la profondità <b>B</b> del giunto in<b> mm</b> </label><input type="number" class="input"  id="prof" name="prof" /></li>
+</ul>
+<div id="btn">
+<ul>
+<li><label  class="radio">Cartucce da 300cc </label><input type="radio"  class="radio" name="confezione" value="cartucce" id="cartucce" checked="checked" /> </li>
+<li><label class="radio">Salsicciotti da 600cc </label><input type="radio" class="radio" name="confezione" value="salsicciotto" id="salsicciotto" /></li></ul><br /> <br />
+</div>
+<div id="btnrect">
+<input class="button" type="button" value="calcola" onclick="calcolasig()" /><input class="button" type="reset" value="reset" /></div><br /><br /></div>
+
+<br /><br />
+<br />
+<div id="boxrisultati">
+<div id="risulta">  </div>         <br />
+<div id="consumometro">   </div>
+<br /><br >
+</div>
+  <script type="text/javascript">
+  function imgcanvas(){
+ var immg=document.getElementById('giunto');
+ var ctx=immg.getContext('2d');
+ ctx.beginPath();
+  var gimg=new Image();
+gimg.src="img/sigillante2.png"  ;
+ctx.drawImage(gimg, 0, -30);
+ctx.font="bold 16px arial"
+ctx.fillStyle ="#fff";
+ctx.fillText("A",155,150);
+ctx.fillText("B",270,120);
+  }
+   function calcolasig(){
+
+var a=document.getElementById('metri').value;
+var b=document.getElementById('largh').value;
+var c=document.getElementById('prof').value;
+
+
+var occorre=document.getElementById('risulta') ;
+var consumo=document.getElementById('consumometro') ;
+if(document.getElementById('cartucce').checked==="true"){
+var confezione="cartucce";
+}else{confezione="salsicciotto";}
+
+if (!isNaN(a) && !isNaN(b) && !isNaN(c)){
+//calcolo volume rapportando in metri in dm e i mm in dm//
+var volu=((a*1)*10) * (b*1/100) * (c*1/100);
+}
+else{
+window.alert('inserisci valori numerici!');}  
+   
+
+//trovo il peso del materiale rapportato in dmc//
+var mat=volu*1.4;
+if(confezione="cartucce"){
+var sigillante=Math.ceil(mat /((1.4/1000)*300));
+var sigilla="la quantità di materiale necessaria per sigillare "+a+" ml di giunti è di <b><span style='color:#990000'> "+sigillante+"</style></b> cartucce di sigillante";
+}
+else{
+var sigillante=Math.ceil(mat/((1.4/1000)*600));
+var sigilla="la quantità di materiale necessaria per sigillare "+a+" ml di giunti è di <b><span style='color:#990000'> "+sigillante+"</style></b> salsicciotti di sigillante";
+}
+
+occorre.innerHTML=sigilla;
+var consu=Math.ceil(a/sigillante);
+var cons="Per un consumo di <b><span style='color:#990000'>"+consu+"</style></b> ml con una confezione di materiale, salvo sfrido del materiale";
+consumo.innerHTML=cons;
+
+var dra=document.getElementById("giunto");
+var ctx=dra.getContext("2d");
+
+ctx.beginPath();
+
+ctx.font="bold 16px arial"
+ctx.fillStyle ="#9a1f10";
+ctx.fillText(b,195,60);
+ctx.fillText(c,270,120);
+
+
+}
+
+
+</script>  
+  
+  
+  </div>
+  
+
+
+
+  </body>
+</html>

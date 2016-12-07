@@ -1,0 +1,85 @@
+<!DOCTYPE html> 
+<html lang="it">
+  <head>
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1,
+width=device-width, height=device-height, target-densitydpi=device-dpi" />
+<meta name="HandheldFriendly" content="True" />
+ <link href="css/calcoliresine.css" media="screen" rel="stylesheet" type="text/css" >
+
+  <meta name="generator" content="PSPad editor, www.pspad.com">
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+ 
+ <script type="text/javaScript" src="js/calcoli.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($){
+
+	
+	/* toggle nav */
+	$("#menu-icon").on("click", function(){
+		$("#header ul").slideToggle();
+		$(this).toggleClass("active");
+	});
+
+});
+</script>
+  <title>Materiale per sgusce</title>
+  <body onload="stimasgusce()">
+  
+  <div id="content">
+ <div id="menu-icon">Menu</div>
+  
+
+
+   <div id="header">
+  <ul class="active">
+    <li><a href="miscelazione.html">Rapporti di miscelazione</a></li>
+    <li><a href="dimensionamentogiunti.html">Stima sviluppo giunti</a></li>
+    <li><a href="sigillature.html">calcolo materiale sigillature</a></li>
+    <li><a href="travetti.html">Calcolo materiale per travetti</a></li>
+    <li><a href="massetto.html">Calcolo materiale per massetto in resina</a></li>
+    <li><a href="resamateriale.html">Calcolo consumo materiale</a> </li>
+    <li><a href="sgusce.html">Calcolo materiale per sgusce parete/pavimento</a></li>
+  </ul>
+  </div>  
+<h1> CALCOLO MATERIALE PER SGUSCE</h1>
+<div id="introsgu">
+<p> stima del materiale necessario per realizzare le sgusce di un rivestimento resinoso<br />
+<b>Attenzione, si tratta di una stima. Il consumo reale potra differire sia in eccesso che in difetto</b> e salvo sfridi del materiale</p>
+
+<hr />
+</div>
+  <div id="imgsgusce">
+  <canvas id="disgusce"  style="background-color:#fff;display:block; margin:0 auto; " >
+<img id="sgupic" src="img/sguscio.png" alt="" />
+ </canvas>
+ </div>
+ <div id="insert">
+ <form id="sgusce">
+ <ul>
+<li> <label for="areasgu">Inserire la quantit&agrave; di sgusce da realizzare (ml).</label>
+ <input type="number" name="areasgu" id="areasgu">  </li>
+<li> <label for="altesgu">Inserire l'altezza verticale delle sgusce <b>A</b> in cm </label><input type="number" name="altesgu" id="altesgu" />     </li>
+<li> <label for="larghsgu">Inserire la larghezza <b>B</b> in cm. </label><input type="number" name="larghsgu" id="larghsgu" />     </li>
+ </ul>
+<input type="button" class="button" value="calcola" onclick="controllasgu()">
+<input type="reset" class="button" value="Cancella dati" onclick="verniciatura.reset()">
+</form>
+
+</div>
+<br /><br />
+<br />
+<div id="boxrisultati">
+<div id="risulta">  </div>         <br />
+<div id="consumometro">   </div>
+<br /><br >
+</div>
+      
+
+
+ 
+
+</div>
+  </body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html> 
+<html lang="it">
+  <head>
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1,
+width=device-width, height=device-height, target-densitydpi=device-dpi" />
+<meta name="HandheldFriendly" content="True" />
+ <link href="css/calcoliresine.css" media="screen" rel="stylesheet" type="text/css" >
+
+  <meta name="generator" content="PSPad editor, www.pspad.com">
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+ 
+ <script type="text/javaScript" src="js/calcoli.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($){
+
+	
+	/* toggle nav */
+	$("#menu-icon").on("click", function(){
+		$("#header ul").slideToggle();
+		$(this).toggleClass("active");
+	});
+
+});
+</script>
+  <title>Rapporti di misccelazione</title>
+  
+  </head>
+  <body onload="genmiscela()">
+    <div id="content">
+ <div id="menu-icon">Menu</div>
+  
+
+
+   <div id="header">
+  <ul class="active">
+    <li><a href="miscelazione.html">Rapporti di miscelazione</a></li>
+    <li><a href="dimensionamentogiunti.html">Stima sviluppo giunti</a></li>
+    <li><a href="sigillature.html">calcolo materiale sigillature</a></li>
+    <li><a href="travetti.html">Calcolo materiale per travetti</a></li>
+    <li><a href="massetto.html">Calcolo materiale per massetto in resina</a></li>
+    <li><a href="resamateriale.html">Calcolo consumo materiale</a> </li>
+    <li><a href="sgusce.html">Calcolo materiale per sgusce parete/pavimento</a></li>
+  </ul>
+  </div>  
+
+
+
+  <h1>RAPPORTI DI MISCELAZIONE</h1>
+  <!-- inizio intro -->
+  <div id="intro">
+  <p class="intro">Semplice calcolatore per miscelare nei giusti rapporti indicati dai produttori, piccoli o grandi quantitativi di materiale, sia resine bicomponenti sia resine a tre componenti.<br />
+
+  </p>
+  
+  <p class="chiedi">Scegliere il tipo di resina da utilizzare:</p>
+     <div id="sceltaresine">
+    <ul>
+    <li><img src="img/bic.png" alt="resina bicomponente"><button type="button" onclick="sceltaresinab()" class="sceltares">bicomponente</button> </li>
+    <li><img src="img/tric.png" alt="resina tricomponente"><button type="button" onclick="sceltaresinat()" class="sceltares">tricomponente</button></li>
+    </ul>
+    </div>
+  </div>
+<!-- fine intro -->
+
+<!-- inizio bicomponente -->
+<div id="bicomponente">
+     <div id="insertdatibicom"> 
+     <form id="miscelabicomponente">
+     <div class="introrichiedi">
+    
+     <label class="miscelaresine">inserire la quantità di resina da miscelare <span class="spiegazione">
+      (per numeri decimali inserire il punto al posto della virgola)</span><br />
+      <input type="number" id="qresin" required/>   </label>
+      </div>
+    
+      <p><span style="font-weight:bold;text-align:center;">Inserire i rapporti di miscelazione</span><br />Come riportato sulla scheda tecnica o sulle confezioni</p> 
+      
+     <div id="rapportibic">
+        <ul>
+        <li><img src="img/misca.png" alt="componente A"><input type="number" id="bicoma"></li>
+        <li><img src="img/miscb.png" alt="componente B"><input type="number" id="bicomb"></li>
+        </ul>
+        <input type="button" class="button" value="calcola" onclick="controllabic()" />
+        <input type="reset" class="button" value="Cancella dati" onclick="miscelabicomponente.reset()" />
+        
+        
+     </div>
+     </form>
+    </div> 
+     <div id="risultatobicomponente"> </div>
+ </div>    
+<!-- fine bicomponente -->  
+
+<!-- inizio tricomponente -->
+<div id="tricomponente">
+    <div id="insertdatitricom">
+    <form id="miscelatricomponente">
+    <div class="introrichiedi">
+     <label> inserire la quantità di resina da miscelare
+      <span class="spiegazione">(per numeri decimali inserire il punto al posto della virgola)</span><br />
+      <input type="number" id="qresint" /></label>
+      </div>
+      <p><span style="font-weight:bold;text-align:center;">Inserire i rapporti di miscelazione </span><br />
+      Come riportato sulla scheda tecnica o sulle confezioni</p> 
+      <div id="rapportitric">
+       <ul>
+        <li><img src="img/misca.png" alt="componente A"/><input type="number" id="tricoma" /></li>
+        <li><img src="img/miscb.png" alt="componente B"/><input type="number" id="tricomb" /></li>
+        <li><img src="img/miscc.png" alt="componente C"/><input type="number" id="tricomc" /></li>
+         </ul>
+        <input type="button" class="button" value="calcola" onclick="controllatric()" />
+        <input type="reset" class="button" value="cancella dati" onclick="miscelatricomponente.reset()" />
+        
+        </div>
+      </form> 
+        
+      
+      </div>
+      <div id="risultatotricomponente">
+      <div class="upper"><a href="#top">&#8679;</a></div>
+      </div>
+    
+
+</div><!--fine tricomponente -->
+     </div> <!--fine content -->
+
+
+  </body>
+</html>

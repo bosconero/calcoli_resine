@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1,
+width=device-width, height=device-height, target-densitydpi=device-dpi" />
+<meta name="HandheldFriendly" content="True" />
+ <link href="css/calcoliresine.css" media="screen" rel="stylesheet" type="text/css" >
+  <meta charset="UTF-8">
+  <meta name="generator" content="PSPad editor, www.pspad.com">
+  <script type="text/javascript" src="js/calcoli.js"> </script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($){
+
+	
+	/* toggle nav */
+	$("#menu-icon").on("click", function(){
+		$("#header ul").slideToggle();
+		$(this).toggleClass("active");
+	});
+
+});
+</script>
+  <title>CALCOLO MATERIALE PER TRAVETTI</title>
+  </head>
+  <body>
+  <div id="content">
+   <div id="menu-icon">Menu</div>
+  
+
+
+   <div id="header">
+  <ul class="active">
+    <li><a href="miscelazione.html">Rapporti di miscelazione</a></li>
+    <li><a href="dimensionamentogiunti.html">Stima sviluppo giunti</a></li>
+            <li><a href="sigillature.html">calcolo materiale sigillature</a></li>
+            <li><a href="travetti.html">Calcolo materiale per travetti</a></li>
+            <li><a href="massetto.html">Calcolo materiale per massetto in resina</a></li>
+            <li><a href="resamateriale.html">Calcolo consumo materiale</a> </li>
+            <li><a href="sgusce.html">Calcolo materiale per sgusce parete/pavimento</a></li>
+  </ul>
+  </div>  
+  <h1>CALCOLO MATERIALE PER TRAVETTI</h1>
+  <div id="intro">
+        <img id="trave" src="img/travetti2.png" style="display:none;" alt="travetto" />
+   <canvas id="travres" width="300" height="200" style="border:solid 1px #003400;">
+  
+   </canvas>
+   <p class="spiegazione">Nel caso di valori decimali, usare il punto al posto della virgola</p>
+  </div>
+  
+  <div id="richiestadati">
+<ul>
+
+<li><label>Inserire la lunghezza in <b>ml</b> del travetto </label><input type="number" name="lunghezza" id="lungtrav"/>  </li>
+<li><label>Inserire la larghezza in <b>cm</b> del travetto</label><input type="number" name="larghezza" id="largtrav" >    </li>
+<li><label>Inserire la profondità in <b>cm</b> del travetto</label><input type="number" name="profondità" id="protrav" >  </li>
+<li><label>Inserire il rapporto resina/quarzo (es. inerire 10 per un rapporto 1:10)</label><input type="number" name="rapporto " id="rappre">  </li>
+</ul>
+<input type="button" value="calcola" class="button" onclick="travettoresina()" />
+ 
+
+    </div>
+    
+    <div id="risultatravetto">
+    <canvas id="datitravetto">  </canvas>
+    </div>
+    <script type="text/javascript">
+ window.onload = function() {
+    var canvas = document.getElementById("travres");
+    var ctx = canvas.getContext("2d");
+    var img = document.getElementById("trave");
+   ctx.drawImage(img, 0, 10);
+   ctx.font="bold 16px arial"
+ctx.fillStyle ="#222";
+ctx.fillText("A",150,60);
+ctx.fillText("B",50,110);
+};
+  
+    function travettoresina(){
+    document.getElementById('risultatravetto').style.display="block";
+    document.getElementById('intro').style.display="block";
+    document.getElementById('richiestadati').style.display="none";    
+    var ltrav=document.getElementById('lungtrav').value;
+    ltravm=ltrav*1;
+    var latrav=document.getElementById('largtrav').value;
+    latravc=latrav*1;
+    var prtrav=document.getElementById('protrav').value;
+    prtravc=prtrav*1;
+    var raptrav=document.getElementById('rappre').value;   
+    raptravc=raptrav*1;
+    var risultatrav=document.getElementById('risultatravetto');
+    var cubtrav=ltravm*(latravc/100)*(prtravc/100);
+ 
+    var ptotmat=cubtrav*1500;
+
+    
+    var qres=Math.ceil(ptotmat/(1+raptravc)*1);
+
+      
+    var qquar=Math.ceil(ptotmat/(1+raptravc)*raptravc);
+
+    
+    var ristrav="Per realizzare un travetto lungo <b><span style='color:#a80000';>"+ltrav+"</span></b> ml, profondo <b><span style='color:#a80000';>"+prtrav+"</span></b> cm e largo <b><span style='color:#a80000';>"+latrav+"</span></b> cm occorreranno <br /><b><span style='color:#a80000';>"+qres+" kg </span></b> di resina epossidica <br /><b><span style='color:#a80000';>"+qquar+" Kg </span></b> di quarzo.";
+    risultatrav.innerHTML=ristrav;
+    var canvas = document.getElementById("travres");
+    var ctx = canvas.getContext("2d");
+    ctx.font="bold 16px arial"
+ctx.fillStyle ="#222";
+ctx.fillText(" "+latrav+" cm",160,60);
+ctx.fillText(" "+prtrav+" cm",26,130);
+ctx.fillText("lunghezza"+ltrav+" ml", 100, 20);
+ctx.fillText("rapporto resina quarzo 1:"+raptravc,50,180);
+   
+    
+    
+    
+    
+    }
+    </script>
+  </div>
+
+  </body>
+</html>

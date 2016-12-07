@@ -1,0 +1,98 @@
+<!DOCTYPE html  lang="it" meta charset="utf-8">
+<html>
+   <head>
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1,
+width=device-width, height=device-height, target-densitydpi=device-dpi" />
+<meta name="HandheldFriendly" content="True" />
+ <link href="css/calcoliresine.css" media="screen" rel="stylesheet" type="text/css" >
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="generator" content="PSPad editor, www.pspad.com">
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript">
+    app.initialize();
+</script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($){
+
+	
+	/* toggle nav */
+	$("#menu-icon").on("click", function(){
+		$("#header ul").slideToggle();
+		$(this).toggleClass("active");
+	});
+
+});
+</script>
+  <title>CALCOLO MATERIALE PER MASSETTO IN RESINA</title>
+  </head>
+  <body>
+  <div id="content">
+   <div id="menu-icon">Menu</div>
+   <div id="header">
+  <ul class="active">
+    <li><a href="miscelazione.html">Rapporti di miscelazione</a></li>
+    <li><a href="dimensionamentogiunti.html">Stima sviluppo giunti</a></li>
+            <li><a href="sigillature.html">calcolo materiale sigillature</a></li>
+            <li><a href="travetti.html">Calcolo materiale per travetti</a></li>
+            <li><a href="massetto.html">Calcolo materiale per massetto in resina</a></li>
+            <li><a href="resamateriale.html">Calcolo consumo materiale</a> </li>
+            <li><a href="sgusce.html">Calcolo materiale per sgusce parete/pavimento</a></li>
+  </ul>
+  </div>  
+  <h1>CALCOLO MATERIALE PER MASSETTO IN RESINA</h1>
+ <div id="richiestadati"> 
+<ul>
+<li><label class="richiestadati">Inserire la superficie del pavimento in <b>mq</b> </label>  
+<input type="number" name="suppav" class="input" id="suppav" /></li>
+<li><label class="richiestadati">Inserire lo spessore del massetto in <b>mm</b> </label> 
+<input type="number" name="spmass" class="input" id="spmass" /></li>
+<li><label class="richiestadati">Inserire il rapporto resina/quarzo (es. rapporto 1:12 inserisci <b>12</b>) </label>
+<input type="number" name="rapmass" class="input" id="rapmass" /></li>
+</ul>
+<input type="button" class="button" value="calcola" onclick="massettores()" /> 
+  
+  
+ </div><!-- fine  intro -->
+  
+ 
+ <div id="risultamassetto"></div>
+ 
+ <script type="text/javascript">
+ function massettores(){
+ var spav=document.getElementById('suppav').value;
+ var supav=spav*1;
+
+ var spma=document.getElementById('spmass').value;
+ var spessma=spma*1;
+
+ var rmass=document.getElementById('rapmass').value;
+ var rappmass=rmass*1;
+
+ var risultatomassetto=document.getElementById('risultamassetto');
+ var cubmass=supav*(spessma/1000);
+  
+var cubmass=supav*(spessma/1000);
+ var totpesomass=1500*cubmass;
+ var qtresina=Math.ceil((totpesomass/(1+rappmass))*1);
+ var qquarzo=Math.ceil((totpesomass/(1+rappmass))*rappmass);
+ var spiegamass="Per realizzare un massetto di <b><span style='color:#a80000;'>"+supav+"</span></b> mq e di spessore <b><span style='color:#a80000;'>"+spessma+"</span></b> mm serviranno: <br /><b><span style='color:#a80000;'>"+qtresina+"</span></b> Kg di resina <br /><b><span style='color:#a80000;'>"+qquarzo+"</span></b> Kg di quarzo" ;
+ risultatomassetto.innerHTML=spiegamass;
+  
+ }
+ </script> 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  </body>
+</html>
